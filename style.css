@@ -15,7 +15,7 @@ body{
     font-size: 40px;
     margin-bottom: 20px;
     font-family: Roboto, sans-serif;
-    color: black;
+    color: white;
     text-align: right;
 }
 
@@ -44,6 +44,6 @@ button{
     font-family: Roboto, sans-serif;
 }
 
-#equals{
+.equals{
     grid-column: 3/5;
 }
