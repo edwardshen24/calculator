@@ -49,10 +49,24 @@ button{
     border-radius: 5px;
 }
 
+.operatorKey{
+    background-color:#FF4040 ;
+}
+
+.operatorKey:hover{
+    background-color:#ee5151 ;
+}
+
 button:hover{
     background-color: #3b3b3b;
 }
 
 .equalsKey{
     grid-column: 3/5;
+    background-color: #00C000;
 }
+
+.equalsKey:hover{
+    background-color: #01e401;
+}
+

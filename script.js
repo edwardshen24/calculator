@@ -15,7 +15,7 @@ function clicker(){
 
           if (e.target.matches("button")){ 
             if (!action){
-                if (displayedNum === "0" || previousKeyType === "operator") //remove 0 
+                if (displayedNum === "0" || previousKeyType === "operator"||displayedNum === "Divide by 0 error") //remove  
                     display.textContent = keyContent;
                 else 
                     display.textContent = displayedNum+keyContent;
@@ -92,8 +92,12 @@ function operate(a,operator,b){
         result = subtract(a,b);
     else if (operator === "multiply")
         result = multiply(a,b);
-    else if (operator === "divide")
-        result = divide(a,b);
+    else if (operator === "divide"){
+        if (b == 0)
+            result = "Divide by 0 error";
+        else
+            result = divide(a,b);
+    }
     else if (operator === "remainder")
         result = remainder(a,b);
 
