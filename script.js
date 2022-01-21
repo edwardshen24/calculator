@@ -88,38 +88,3 @@ function operate(a,operator,b){
 
 
 
-/*
-
-
-function clicker(){
-let i = 0;
-let operator = new Array();
-let number = new Array();
-let j = 0;
-
-
-keys.addEventListener('click', e => {
-    let operators = ["+","-","*","/","%","="];
-    if (`${e.target.id}` === "allClear") //clear display
-        display.textContent = " ";
-    else if (`${e.target.id}` !== "keys"){
-        display.textContent += `${e.target.id}`; //display on terminal
-        let last = display.textContent.charAt(display.textContent.length-1); // get the last char
-        if (operators.indexOf(last) > -1 ){ // check against list of operator
-            i++;
-            subString = display.textContent;
-            operator.push(subString.slice(-1));
-            if (i === 2){
-                number = display.textContent.split(operator[j]);
-                operate(number[0],operator[j],number[1].substring(0, number[1].length - 1));
-                j++;
-                i = 0;
-            }
-        }
-    }
-});
-}
-
-
-
-*/
