@@ -18,6 +18,7 @@ body{
     color: 	#FFD700;
     height: 17%;
     text-align: right;
+    overflow-wrap: break-word;
 }
 
 #container{

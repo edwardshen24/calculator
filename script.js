@@ -13,27 +13,23 @@ function clicker(){
         const displayedNum = display.textContent //what is on the display
         const previousKeyType = container.dataset.previousKeyType
 
-        Array.from(key.parentNode.children)
-        .forEach(k => k.classList.remove('is-depressed'));
-
           if (e.target.matches("button")){ 
             if (!action){
                 if (displayedNum === "0" || previousKeyType === "operator") //remove 0 
                     display.textContent = keyContent;
-                else    
+                else 
                     display.textContent = displayedNum+keyContent;
                 container.dataset.previousKeyType = keyContent;
             }
             else if (operators.indexOf(action) > -1){
-                key.classList.add('is-depressed')
-                container.dataset.previousKeyType = 'operator'
-                container.dataset.firstValue = displayedNum
-                container.dataset.operator = action
+                container.dataset.previousKeyType = 'operator';
+                container.dataset.firstValue = displayedNum;
+                container.dataset.operator = action;
             }
             else if (action === "decimal" && !displayedNum.includes('.'))
                 display.textContent = displayedNum + ".";
             else if (action === "delete")
-                console.log("delete")
+                display.textContent = display.textContent.slice(0,-1);
             else if (action === "clear")
                 display.textContent = " ";
             else if (action === "operate"){
@@ -49,36 +45,56 @@ function clicker(){
 
 
 function add(a,b){
-     return parseFloat(a)+ parseFloat(b);
+    let x = (parseFloat(a) + parseFloat(b));
+    if (Number.isInteger(x))
+        return x
+    else 
+        return x.toFixed(2);
 }
 
 function subtract(a,b){
-    return parseFloat(a) - parseFloat(b);
+    let x = (parseFloat(a) - parseFloat(b));
+    if (Number.isInteger(x))
+        return x
+    else 
+        return x.toFixed(2);
 }
 
 function multiply(a,b){
-    return parseFloat(a) * parseFloat(b);
+    let x = (parseFloat(a) * parseFloat(b));
+    if (Number.isInteger(x))
+        return x
+    else 
+        return x.toFixed(2);
 }
 
 function divide(a,b){
-    return (parseFloat(a) / parseFloat(b)).toFixed(2);
+    let x = (parseFloat(a) / parseFloat(b));
+    if (Number.isInteger(x))
+        return x
+    else 
+        return x.toFixed(2);
 }
 
 function remainder(a,b){
-    return (parseFloat(a) % parseFloat(b)).toFixed(2);
+    let x = (parseFloat(a) % parseFloat(b));
+    if (Number.isInteger(x))
+        return x
+    else 
+        return x.toFixed(2);
 }
 
 function operate(a,operator,b){
     let result = " ";
-    if (operator == "add")
+    if (operator === "add")
         result = add(a,b);
-    else if(operator == "subtract")
+    else if(operator === "subtract")
         result = subtract(a,b);
-    else if (operator == "multiply")
+    else if (operator === "multiply")
         result = multiply(a,b);
-    else if (operator == "divide")
+    else if (operator === "divide")
         result = divide(a,b);
-    else if (operator == "remainder")
+    else if (operator === "remainder")
         result = remainder(a,b);
 
     return result;
