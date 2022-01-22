@@ -12,31 +12,50 @@ function clicker(){
         const keyContent = key.textContent //what will be displayed
         const displayedNum = display.textContent //what is on the display
         const previousKeyType = container.dataset.previousKeyType
+        const secondNum = displayedNum;
+        const firstNum = container.dataset.firstValue;
+        const operator = container.dataset.operator;  
 
           if (e.target.matches("button")){ 
             if (!action){
                 if (displayedNum === "0" || previousKeyType === "operator"||displayedNum === "Divide by 0 error") //remove  
                     display.textContent = keyContent;
-                else 
+                else {
                     display.textContent = displayedNum+keyContent;
+                    container.dataset.previousKey = 'number';
+                }
                 container.dataset.previousKeyType = keyContent;
             }
             else if (operators.indexOf(action) > -1){
                 container.dataset.previousKeyType = 'operator';
                 container.dataset.firstValue = displayedNum;
                 container.dataset.operator = action;
+                if  (firstNum && operator && previousKeyType !== 'operator') {
+                    const calc = operate(firstNum, operator, secondNum);
+                    container.dataset.firstValue = calc;
+                }
+                else    
+                  container.dataset.firstValue = displayedNum;
+                
+                container.dataset.previousKeyType = 'operator'
+                container.dataset.operator = action
             }
-            else if (action === "decimal" && !displayedNum.includes('.'))
-                display.textContent = displayedNum + ".";
+            else if (action === "decimal" ){
+                if (!displayedNum.includes('.'))
+                    display.textContent = displayedNum + ".";
+                else if(previousKeyType === "operator")
+                    display.textContent = '0.';
+                container.dataset.previousKey = 'decimal';
+            }
             else if (action === "delete")
                 display.textContent = display.textContent.slice(0,-1);
-            else if (action === "clear")
+            else if (action === "clear"){
                 display.textContent = " ";
+                container.dataset.previousKey = 'clear';
+            }
             else if (action === "operate"){
-                const secondNum = displayedNum;
-                const firstNum = container.dataset.firstValue;
-                const operator = container.dataset.operator;    
                 display.textContent = operate(firstNum, operator, secondNum);
+                container.dataset.previousKey = 'operate';
             }
           }
     });
