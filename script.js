@@ -22,7 +22,7 @@ function clicker(){
                     display.textContent = keyContent;
                 else {
                     display.textContent = displayedNum+keyContent;
-                    container.dataset.previousKey = 'number';
+                    
                 }
                 container.dataset.previousKeyType = keyContent;
             }
@@ -30,32 +30,23 @@ function clicker(){
                 container.dataset.previousKeyType = 'operator';
                 container.dataset.firstValue = displayedNum;
                 container.dataset.operator = action;
-                if  (firstNum && operator && previousKeyType !== 'operator') {
-                    const calc = operate(firstNum, operator, secondNum);
-                    container.dataset.firstValue = calc;
-                }
-                else    
-                  container.dataset.firstValue = displayedNum;
-                
-                container.dataset.previousKeyType = 'operator'
-                container.dataset.operator = action
             }
             else if (action === "decimal" ){
                 if (!displayedNum.includes('.'))
                     display.textContent = displayedNum + ".";
                 else if(previousKeyType === "operator")
                     display.textContent = '0.';
-                container.dataset.previousKey = 'decimal';
+                
             }
             else if (action === "delete")
                 display.textContent = display.textContent.slice(0,-1);
             else if (action === "clear"){
                 display.textContent = " ";
-                container.dataset.previousKey = 'clear';
+                
             }
             else if (action === "operate"){
                 display.textContent = operate(firstNum, operator, secondNum);
-                container.dataset.previousKey = 'operate';
+                
             }
           }
     });
